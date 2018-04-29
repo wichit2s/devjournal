@@ -1,2 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/purple-green.css"; 
+
+/*
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Define the theme.
+$devjournal-primary: mat-palette($mat-green);
+$devjournal-accent:  mat-palette($mat-green, A200, A100, A400);
+$devjournal-theme:   mat-light-theme($devjournal-primary, $devjournal-accent);
+
+// Include the theme styles for only specified components.
+@include mat-core-theme($devjournal-theme);
+@include mat-button-theme($devjournal-theme);
+@include mat-checkbox-theme($devjournal-theme);
+*/

@@ -1,7 +1,49 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <span>Dev Journal</span>
-    </mat-toolbar-row>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<mat-sidenav-container class="devjournal-container">
+  <mat-sidenav #sidenav [mode]="mode" class="devjournal-sidenav" color="accent">
+    <mat-grid-list cols="1" rowHeight="128px">
+      <mat-grid-tile color="primary" [colspan]="1" [rowspan]="1">
+        <img (click)="sidenav.toggle()" class="cv-image" src="assets/wichit2s.png"/>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="1" rowHeight="20px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <span>Wichit Sombat</span>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <span class="mat-caption">Lecturer</span>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-list>
+      <mat-list-item *ngFor="let submenu of menus"><mat-icon>label</mat-icon><button mat-button (click)="clickMenu(submenu)">{{ submenu }}</button></mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <img (click)="sidenav.toggle()" class="logo-image" src="assets/neo_nate-200x200.jpg"/>
+        <span class="mat-button">Dev Journal</span>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+        <span class="mat-button">{{ title }}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <app-latest *ngIf="title === 'Latest'"></app-latest>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Editor</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <td-code-editor 
+          style="height: 200px" 
+          editorStyle="border:0;"
+          flex 
+          theme="vs" 
+          language="markdown"
+          automaticLayout
+          [editorOptions]="{readOnly:false, fontSize:10}"
+          [(ngModel)]="model">
+          (change)="editorUpdate()">
+        </td-code-editor>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>
